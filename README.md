@@ -164,6 +164,10 @@ If your project depends on ERC-721 or you want to help improve the assurance of 
 
 Read the full [bug bounty program](BUG_BOUNTY.md).
 
+## Maintainers
+
+This project began at [0xcert](https://github.com/0xcert) in 2018 and continued under [Nibbstack](https://github.com/nibbstack) from 2021, maintained throughout by [Kristijan Sedlak](https://github.com/xpepermint). In 2026 it was handed over to [William Entriken](https://github.com/fulldecent), who maintains it today.
+
 ## Licence
 
 See [LICENSE](./LICENSE) for details.
