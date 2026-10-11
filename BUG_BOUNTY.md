@@ -56,6 +56,7 @@ Rewards:
 - All eligible reports (low severity or notable) are mentioned in [this thread in a leaderboard](#leaderboard) and are eligible to receive a special bug bounty tee shirt.
 - Additional rewards are available from [sponsors](#sponsors). In general, these will follow proportionally as the rewards above.
 - Nibbstack and sponsors reserve the right to deduct from the bounty pledge when the ongoing bug reports are rewarded.
+- The cumulative limit for payout of this bounty is USD 3,000.
 
 Examples of impact:
 
