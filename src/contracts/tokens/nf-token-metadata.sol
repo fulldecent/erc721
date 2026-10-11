@@ -80,7 +80,7 @@ contract NFTokenMetadata is
   }
 
   /**
-   * @notice This is an internal function that can be overriden if you want to implement a different
+   * @notice This is an internal function that can be overridden if you want to implement a different
    * way to generate token URI.
    * @param _tokenId Id for which we want uri.
    * @return URI of _tokenId.

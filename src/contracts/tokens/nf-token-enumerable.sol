@@ -148,7 +148,7 @@ contract NFTokenEnumerable is
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
    * @dev Removes a NFT from an address.
-   * @param _from Address from wich we want to remove the NFT.
+   * @param _from Address from which we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */
   function _removeNFToken(
@@ -178,7 +178,7 @@ contract NFTokenEnumerable is
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
    * @dev Assigns a new NFT to an address.
-   * @param _to Address to wich we want to add the NFT.
+   * @param _to Address to which we want to add the NFT.
    * @param _tokenId Which NFT we want to add.
    */
   function _addNFToken(
