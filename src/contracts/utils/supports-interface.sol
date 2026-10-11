@@ -11,7 +11,7 @@ contract SupportsInterface is
 {
 
   /**
-   * @dev Mapping of supported intefraces. You must not set element 0xffffffff to true.
+   * @dev Mapping of supported interfaces. You must not set element 0xffffffff to true.
    */
   mapping(bytes4 => bool) internal supportedInterfaces;
 
@@ -24,7 +24,7 @@ contract SupportsInterface is
   }
 
   /**
-   * @dev Function to check which interfaces are suported by this contract.
+   * @dev Function to check which interfaces are supported by this contract.
    * @param _interfaceID Id of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
