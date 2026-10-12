@@ -18,7 +18,7 @@ interface ERC165
     bytes4 _interfaceID
   )
     external
-    view
+    pure
     returns (bool);
     
 }

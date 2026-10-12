@@ -28,15 +28,6 @@ contract NFTokenMetadata is
   mapping (uint256 => string) internal idToUri;
 
   /**
-   * @notice When implementing this contract don't forget to set nftName and nftSymbol.
-   * @dev Contract constructor.
-   */
-  constructor()
-  {
-    supportedInterfaces[0x5b5e139f] = true; // ERC721Metadata
-  }
-
-  /**
    * @dev Returns a descriptive name for a collection of NFTokens.
    * @return _name Representing name.
    */
@@ -94,6 +85,28 @@ contract NFTokenMetadata is
     returns (string memory)
   {
     return idToUri[_tokenId];
+  }
+
+  /**
+   * @dev Function to check which interfaces are suported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    virtual
+    pure
+    returns (bool)
+  {
+    if (_interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x5b5e139f) {
+      return true;
+    }
+    return false;
   }
 
   /**

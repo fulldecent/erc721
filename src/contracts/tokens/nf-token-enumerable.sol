@@ -39,14 +39,6 @@ contract NFTokenEnumerable is
   mapping(uint256 => uint256) internal idToOwnerIndex;
 
   /**
-   * @dev Contract constructor.
-   */
-  constructor()
-  {
-    supportedInterfaces[0x780e9d63] = true; // ERC721Enumerable
-  }
-
-  /**
    * @dev Returns the count of all existing NFTokens.
    * @return Total supply of NFTs.
    */
@@ -93,6 +85,28 @@ contract NFTokenEnumerable is
   {
     require(_index < ownerToIds[_owner].length, INVALID_INDEX);
     return ownerToIds[_owner][_index];
+  }
+
+    /**
+   * @dev Function to check which interfaces are suported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    virtual
+    pure
+    returns (bool)
+  {
+    if (_interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x780e9d63) {
+      return true;
+    }
+    return false;
   }
 
   /**

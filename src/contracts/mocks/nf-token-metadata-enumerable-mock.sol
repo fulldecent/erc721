@@ -16,6 +16,29 @@ contract NFTokenMetadataEnumerableMock is
 {
 
   /**
+   * @dev Function to check which interfaces are suported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override(NFTokenEnumerable, NFTokenMetadata)
+    virtual
+    pure
+    returns (bool)
+  {
+    if (_interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x780e9d63
+      || _interfaceID == 0x5b5e139f) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * @dev Contract constructor.
    * @param _name A descriptive name for a collection of NFTs.
    * @param _symbol An abbreviated name for NFTokens.

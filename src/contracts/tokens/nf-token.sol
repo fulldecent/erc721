@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./erc721.sol";
 import "./erc721-token-receiver.sol";
-import "../utils/supports-interface.sol";
+import "../utils/erc165.sol";
 import "../utils/address-utils.sol";
 
 /**
@@ -11,7 +11,7 @@ import "../utils/address-utils.sol";
  */
 contract NFToken is
   ERC721,
-  SupportsInterface
+  ERC165
 {
   using AddressUtils for address;
 
@@ -98,14 +98,6 @@ contract NFToken is
   {
     require(idToOwner[_tokenId] != address(0), NOT_VALID_NFT);
     _;
-  }
-
-  /**
-   * @dev Contract constructor.
-   */
-  constructor()
-  {
-    supportedInterfaces[0x80ac58cd] = true; // ERC721
   }
 
   /**
@@ -292,6 +284,26 @@ contract NFToken is
     returns (bool)
   {
     return ownerToOperators[_owner][_operator];
+  }
+
+  /**
+   * @dev Function to check which interfaces are suported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    virtual
+    pure
+    returns (bool)
+  {
+    if (_interfaceID == 0x01ffc9a7 || _interfaceID == 0x80ac58cd) {
+      return true;
+    }
+    return false;
   }
 
   /**
