@@ -10,9 +10,9 @@ Previous round of this bounty program: [v1, ended 2018-07-16](https://github.com
 
 Thank you to all researchers, these are the accepted findings from this bounty program:
 
-| Bug report | Severity | Researcher
-|-|-|-|
-| #242 | Low severity | @sam-at-luther |
+| Bug report | Severity     | Researcher     |
+| ---------- | ------------ | -------------- |
+| #242       | Low severity | @sam-at-luther |
 
 ## Sponsors
 
@@ -26,20 +26,20 @@ This bounty program is sponsored by:
 
 We appreciate all suggestions for this contract, for operations, and for ERC-721 in general, and will take them into consideration.
 
-- Only the end-user contracts (`src/contracts/**/*.sol`) are **in scope**.
-- Only the latest released version of this project is **in scope**.
-- Social engineering, XKCD#538 attacks, bringing down Mainnet/Infura are **out of scope**.
-- Using a version of Solidity older than the latest version ([they don't support it](https://github.com/argotorg/solidity/security#supported-versions)) or other dependencies which their vendors no longer support is **out of scope**.
+* Only the end-user contracts (`src/contracts/**/*.sol`) are **in scope**.
+* Only the latest released version of this project is **in scope**.
+* Social engineering, XKCD#538 attacks, bringing down Mainnet/Infura are **out of scope**.
+* Using a version of Solidity older than the latest version ([they don't support it](https://github.com/argotorg/solidity/security#supported-versions)) or other dependencies which their vendors no longer support is **out of scope**.
 
 ## Sensitivity
 
 For all **in scope** items, the following items can be **eligible findings**:
 
-- Overflow or break parts of the implementation
-- Steal ownership of a token
-- Give a token to somebody else and double-spend it or revert it to your control
-- Any undocumented and unintuitive behavior
-- Typos
+* Overflow or break parts of the implementation
+* Steal ownership of a token
+* Give a token to somebody else and double-spend it or revert it to your control
+* Any undocumented and unintuitive behavior
+* Typos
 
 These are ineligible findings:
 
@@ -49,10 +49,10 @@ We are inspired by the Chinese idiom 一字千金.
 
 ## Rules and rewards
 
-- Findings that have previously been published as issues or pull requests to this project, or are already disclosed to the sponsors, are not eligible for rewards (a corollary: the sponsors are ineligible for rewards).
-- [GitHub Issues](https://github.com/fulldecent/erc721/issues) is the only way to report issues and request rewards.
-- The lead sponsor has complete and final judgment on the eligibility and scoring of findings.
-- This program is governed under the laws of the United States, if there is a party that we are unable to pay due to trade embargoes or other restrictions, then we won't pay. But we are happy to discuss alternate arrangements.
+* Findings that have previously been published as issues or pull requests to this project, or are already disclosed to the sponsors, are not eligible for rewards (a corollary: the sponsors are ineligible for rewards).
+* [GitHub Issues](https://github.com/fulldecent/erc721/issues) is the only way to report issues and request rewards.
+* The lead sponsor has complete and final judgment on the eligibility and scoring of findings.
+* This program is governed under the laws of the United States, if there is a party that we are unable to pay due to trade embargoes or other restrictions, then we won't pay. But we are happy to discuss alternate arrangements.
 
 We classify findings into severity based on likelihood and impact. We are inspired by the [OWASP risk rating](https://community.owasp.org/OWASP_Risk_Rating_Methodology) model.
 
@@ -64,10 +64,10 @@ We classify findings into severity based on likelihood and impact. We are inspir
 
 Examples of impact:
 
-- *High impact* — steal a token from someone else, impersonate the contract owner
-- *Medium impact* — cause metadata to fail so that the wrong data goes on the blockchain, or waste 5,000 gas or more in a transaction (no less than an `SSTORE`) (ignoring transfer-to-self and no-op transactions)
-- *Low impact* — cause a transaction counterparty that carefully reads the contract documentation to make a mistake on some edge case type of transaction
-- *Notable* — typos, missing comments
+* *High impact* — steal a token from someone else, impersonate the contract owner
+* *Medium impact* — cause metadata to fail so that the wrong data goes on the blockchain, or waste 5,000 gas or more in a transaction (no less than an `SSTORE`) (ignoring transfer-to-self and no-op transactions)
+* *Low impact* — cause a transaction counterparty that carefully reads the contract documentation to make a mistake on some edge case type of transaction
+* *Notable* — typos, missing comments
 
 Examples of likelihood:
 
@@ -78,27 +78,27 @@ Examples of likelihood:
 
 Rewards:
 
-- **Highest severity** — full payout of the remaining bug bounty (up to 1 ETH)
-- **High severity** — partial payout of the remaining bug bounty (up to 0.5 ETH)
-- **Medium severity** — partial payout of the remaining bug bounty (up to 0.1 ETH)
-- Low severity and notable — no cash payout
-- Every accepted problem report will also receive
-  - Mentioned in [this thread in a leaderboard](#leaderboard).
-  - Public acknowledgement personally from Will on X.
-  - *(Would you like to offer swag, and cash consideration here from your project as a sponsor? Contact us.)*
+* **Highest severity** — full payout of the remaining bug bounty (up to 1 ETH)
+* **High severity** — partial payout of the remaining bug bounty (up to 0.5 ETH)
+* **Medium severity** — partial payout of the remaining bug bounty (up to 0.1 ETH)
+* Low severity and notable — no cash payout
+* Every accepted problem report will also receive
+  * Mentioned in [this thread in a leaderboard](#leaderboard).
+  * Public acknowledgement personally from Will on X.
+  * *(Would you like to offer swag, and cash consideration here from your project as a sponsor? Contact us.)*
 
-- The cumulative limit for payout of this bounty is USD 3,000.
+* The cumulative limit for payout of this bounty is USD 3,000.
 
 How to win:
 
-- Be descriptive and detailed when describing your issue.
-- Include a reproducible test case in our test suite, if applicable.
-- Fix it — recommend a way to solve the problem.
+* Be descriptive and detailed when describing your issue.
+* Include a reproducible test case in our test suite, if applicable.
+* Fix it — recommend a way to solve the problem.
 
 Rules for bounty sponsor:
 
-- We will respond quickly to your questions.
-- We will adjudicate all prizes quickly.
+* We will respond quickly to your questions.
+* We will adjudicate all prizes quickly.
 
 ## More questions
 
@@ -113,10 +113,10 @@ Rules for bounty sponsor:
   * Yes, we are seeking sponsors and will add additional prizes here if that happens.
   * Yes, we will update the code and redeploy the contract. So, click [:star: STAR and :eye: WATCH](https://github.com/fulldecent/erc721/) above on this repo for updates.
 
-- Taxes?
-  - If you earn so much money that applicable law requires you to complete a tax form, then we will ask you to do so. This whole program is subject to the laws of the United States.
-- I read to the bottom of the file.
-  - That's not even a question. Good, you're the type of person we're seeking. Here's a hint, you can see the [CryptoKitties bounty program](https://github.com/axiomzen/cryptokitties-bounty) and [Su Squares bounty program](https://github.com/su-squares/ethereum-contract) and everything that happened there. They were a great inspiration for this bounty.
+* Taxes?
+  * If you earn so much money that applicable law requires you to complete a tax form, then we will ask you to do so. This whole program is subject to the laws of the United States.
+* I read to the bottom of the file.
+  * That's not even a question. Good, you're the type of person we're seeking. Here's a hint, you can see the [CryptoKitties bounty program](https://github.com/axiomzen/cryptokitties-bounty) and [Su Squares bounty program](https://github.com/su-squares/ethereum-contract) and everything that happened there. They were a great inspiration for this bounty.
 
 ## Thank you
 

@@ -1,8 +1,7 @@
-
 import { expect } from "chai";
 import { network } from "hardhat";
 
-describe('nf-token-enumerable', function() {
+describe("nf-token-enumerable", function () {
   let nfToken, owner, bob, jane, sara, ethers;
   const id1 = 123;
   const id2 = 124;
@@ -10,25 +9,30 @@ describe('nf-token-enumerable', function() {
 
   beforeEach(async () => {
     ({ ethers } = await network.create());
-    const nftContract = await ethers.getContractFactory('NFTokenEnumerableTestMock');
+    const nftContract = await ethers.getContractFactory(
+      "NFTokenEnumerableTestMock",
+    );
     nfToken = await nftContract.deploy();
-    [ owner, bob, jane, sara] = await ethers.getSigners();
+    [owner, bob, jane, sara] = await ethers.getSigners();
     await nfToken.waitForDeployment();
   });
 
-  it('correctly checks all the supported interfaces', async function() {
-    expect(await nfToken.supportsInterface('0x80ac58cd')).to.equal(true);
-    expect(await nfToken.supportsInterface('0x780e9d63')).to.equal(true);
-    expect(await nfToken.supportsInterface('0x5b5e139f')).to.equal(false);
+  it("correctly checks all the supported interfaces", async function () {
+    expect(await nfToken.supportsInterface("0x80ac58cd")).to.equal(true);
+    expect(await nfToken.supportsInterface("0x780e9d63")).to.equal(true);
+    expect(await nfToken.supportsInterface("0x5b5e139f")).to.equal(false);
   });
 
-  it('correctly mints a NFT', async function() {
-    expect(await nfToken.connect(owner).mint(bob.address, id1)).to.emit(nfToken, 'Transfer');
+  it("correctly mints a NFT", async function () {
+    expect(await nfToken.connect(owner).mint(bob.address, id1)).to.emit(
+      nfToken,
+      "Transfer",
+    );
     expect(await nfToken.balanceOf(bob.address)).to.equal(1);
     expect(await nfToken.totalSupply()).to.equal(1);
   });
 
-  it('returns the correct token by index', async function() {
+  it("returns the correct token by index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await nfToken.connect(owner).mint(bob.address, id2);
     await nfToken.connect(owner).mint(bob.address, id3);
@@ -37,24 +41,26 @@ describe('nf-token-enumerable', function() {
     expect(await nfToken.tokenByIndex(2)).to.equal(id3);
   });
 
-  it('throws when trying to get token by non-existing index', async function() {
+  it("throws when trying to get token by non-existing index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
-    await expect(nfToken.tokenByIndex(1)).to.be.revertedWith('005007');
+    await expect(nfToken.tokenByIndex(1)).to.be.revertedWith("005007");
   });
 
-  it('returns the correct token of owner by index', async function() {
+  it("returns the correct token of owner by index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await nfToken.connect(owner).mint(bob.address, id2);
     await nfToken.connect(owner).mint(sara.address, id3);
     expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(id2);
   });
 
-  it('throws when trying to get token of owner by non-existing index', async function() {
+  it("throws when trying to get token of owner by non-existing index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
-    await expect(nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.be.revertedWith('005007');
+    await expect(
+      nfToken.tokenOfOwnerByIndex(bob.address, 1),
+    ).to.be.revertedWith("005007");
   });
 
-  it('mint should correctly set ownerToIds and idToOwnerIndex and idToIndex', async function() {
+  it("mint should correctly set ownerToIds and idToOwnerIndex and idToIndex", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await nfToken.connect(owner).mint(bob.address, id3);
     await nfToken.connect(owner).mint(bob.address, id2);
@@ -71,7 +77,7 @@ describe('nf-token-enumerable', function() {
     expect(await nfToken.idToIndexWrapper(id2)).to.equal(2);
   });
 
-  it('burn should correctly set ownerToIds and idToOwnerIndex and idToIndex', async function() {
+  it("burn should correctly set ownerToIds and idToOwnerIndex and idToIndex", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await nfToken.connect(owner).mint(bob.address, id3);
     await nfToken.connect(owner).mint(bob.address, id2);
@@ -102,14 +108,14 @@ describe('nf-token-enumerable', function() {
     expect(await nfToken.ownerToIdsLen(bob.address)).to.equal(0);
     try {
       await nfToken.ownerToIdbyIndex(bob.address, 0);
-      expect.fail('index 0 should revert');
+      expect.fail("index 0 should revert");
     } catch (error) {
       expect(String(error.message)).to.match(/panic code (0x32|50)/);
     }
     expect(await nfToken.idToIndexWrapper(id3)).to.equal(0);
   });
 
-  it('transfer should correctly set ownerToIds and idToOwnerIndex and idToIndex', async function() {
+  it("transfer should correctly set ownerToIds and idToOwnerIndex and idToIndex", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await nfToken.connect(owner).mint(bob.address, id3);
     await nfToken.connect(owner).mint(bob.address, id2);
@@ -124,7 +130,7 @@ describe('nf-token-enumerable', function() {
     expect(await nfToken.ownerToIdbyIndex(bob.address, 1)).to.equal(id3);
     try {
       await nfToken.ownerToIdbyIndex(bob.address, 2);
-      expect.fail('index 2 should revert');
+      expect.fail("index 2 should revert");
     } catch (error) {
       expect(String(error.message)).to.match(/panic code (0x32|50)/);
     }
@@ -132,5 +138,4 @@ describe('nf-token-enumerable', function() {
     expect(await nfToken.ownerToIdsLen(sara.address)).to.equal(1);
     expect(await nfToken.ownerToIdbyIndex(sara.address, 0)).to.equal(id1);
   });
-
 });

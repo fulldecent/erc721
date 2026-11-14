@@ -1,0 +1,35 @@
+name: Lint
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    # Runs on all pull requests targeting any branch
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Prettier & Markdownlint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting (Prettier)
+        run: npm run lint:prettier
+
+      - name: Check Markdown (markdownlint)
+        run: npm run lint:markdown
