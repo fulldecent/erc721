@@ -1,6 +1,9 @@
 # The MIT license text is not a Markdown document.
 LICENSE.md
 
+# Release Please writes this file. It is not hand-edited Markdown.
+CHANGELOG.md
+
 # Installed packages and build output are not project documents.
 node_modules
 build
