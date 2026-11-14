@@ -1,6 +1,6 @@
 {
   "rules": {
-    "max-line-length": ["warn", 100],
+    "max-line-length": ["warn", 120],
     "no-console": "error"
   }
 }

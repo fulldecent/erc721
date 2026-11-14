@@ -7,7 +7,12 @@
     "test": "hardhat test mocha",
     "compile": "hardhat build",
     "coverage": "hardhat test mocha --coverage",
-    "solhint": "solhint src/**/*.sol"
+    "solhint": "solhint src/**/*.sol",
+    "lint:prettier": "prettier --check .",
+    "lint:markdown": "markdownlint \"**/*.md\"",
+    "format": "prettier --write . && markdownlint --fix \"**/*.md\"",
+    "format:prettier": "prettier --write .",
+    "format:markdown": "markdownlint --fix \"**/*.md\""
   },
   "license": "MIT",
   "repository": {
@@ -46,6 +51,8 @@
     "chai": "6.3.0",
     "ethers": "6.17.0",
     "hardhat": "3.22.0",
+    "markdownlint-cli": "^0.50.0",
+    "prettier": "^3.10.1",
     "solhint": "6.2.5"
   },
   "engines": {

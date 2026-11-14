@@ -1,6 +1,6 @@
-[![Node.js CI](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml/badge.svg)](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml) [![NPM Version](https://img.shields.io/npm/v/@nibbstack/erc721)](https://www.npmjs.com/package/@nibbstack/erc721) [![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/fulldecent/erc721/blob/main/BUG_BOUNTY.md)
-
 # ERC-721 Token — Reference Implementation
+
+[![Node.js CI](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml/badge.svg)](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml) [![NPM Version](https://img.shields.io/npm/v/@nibbstack/erc721)](https://www.npmjs.com/package/@nibbstack/erc721) [![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/fulldecent/erc721/blob/main/BUG_BOUNTY.md)
 
 **NOTICE: This repository has been transferred from 0xcert to Nibbstack and thus renamed from 0xcert/ethereum-erc721 to @nibbstack/erc721.**
 
@@ -23,12 +23,12 @@ Other files in the [tokens](src/contracts/tokens) and [utils](src/contracts/util
 
 Mock contracts showing basic contract usage are available in the [mocks](src/contracts/mocks) folder.
 
-There are also test mocks that can be seen [here](src/tests/mocks). These are specifically made to test different edge cases and behaviours and should NOT be used as a reference for implementation.
+There are also test mocks in the [test mocks folder](src/tests/mocks). These are specifically made to test different edge cases and behaviours and should NOT be used as a reference for implementation.
 
 ## Requirements
 
-* Node.js 26
-* macOS, Linux, or Windows
+- Node.js 26
+- macOS, Linux, or Windows
 
 ## Installation
 
@@ -38,7 +38,7 @@ There are also test mocks that can be seen [here](src/tests/mocks). These are sp
 
 This project is [released as an npm module](https://www.npmjs.com/package/@nibbstack/erc721). You must install it using the `npm` command:
 
-```
+```sh
 npm install @nibbstack/erc721
 ```
 
@@ -48,21 +48,21 @@ npm install @nibbstack/erc721
 
 Clone this repository and install the required `npm` dependencies:
 
-```
-$ git clone https://github.com/fulldecent/erc721.git
-$ cd erc721
-$ npm install
+```sh
+git clone https://github.com/fulldecent/erc721.git
+cd erc721
+npm install
 ```
 
 Make sure that everything has been set up correctly:
 
-```
-$ npm run test
+```sh
+npm run test
 ```
 
 ## Usage
 
-### npm
+### JavaScript
 
 To interact with this package's contracts within JavaScript code, you simply need to require this package's `.json` files:
 
@@ -144,4 +144,4 @@ This project began at [0xcert](https://github.com/0xcert) in 2018 and continued 
 
 ## Licence
 
-See [LICENSE](./LICENSE) for details.
+See [LICENSE.md](./LICENSE.md) for details.

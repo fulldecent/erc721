@@ -1,0 +1,9 @@
+*.md
+/node_modules/
+/build/
+/artifacts/
+/cache/
+/coverage/
+/abi/
+/types/
+/dist/

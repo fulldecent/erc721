@@ -1,0 +1,12 @@
+# The MIT license text is not a Markdown document.
+LICENSE.md
+
+# Installed packages and build output are not project documents.
+node_modules
+build
+artifacts
+cache
+coverage
+abi
+types
+dist
