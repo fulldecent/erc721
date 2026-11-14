@@ -18,9 +18,13 @@ describe("nf-token-enumerable", function () {
   });
 
   it("correctly checks all the supported interfaces", async function () {
+    expect(await nfToken.supportsInterface("0x01ffc9a7")).to.equal(true);
     expect(await nfToken.supportsInterface("0x80ac58cd")).to.equal(true);
-    expect(await nfToken.supportsInterface("0x780e9d63")).to.equal(true);
     expect(await nfToken.supportsInterface("0x5b5e139f")).to.equal(false);
+    expect(await nfToken.supportsInterface("0x780e9d63")).to.equal(true);
+    expect(await nfToken.supportsInterface("0x00000000")).to.equal(false);
+    expect(await nfToken.supportsInterface("0x12345678")).to.equal(false);
+    expect(await nfToken.supportsInterface("0xdeadbeef")).to.equal(false);
   });
 
   it("correctly mints a NFT", async function () {

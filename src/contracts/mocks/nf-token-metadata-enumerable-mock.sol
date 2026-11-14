@@ -30,6 +30,25 @@ contract NFTokenMetadataEnumerableMock is
   }
 
   /**
+   * @dev Function to check which interfaces are supported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override(NFTokenEnumerable, NFTokenMetadata)
+    pure
+    returns (bool)
+  {
+    return _interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x780e9d63
+      || _interfaceID == 0x5b5e139f;
+  }
+
+  /**
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
    * @param _tokenId of the NFT to be minted by the msg.sender.

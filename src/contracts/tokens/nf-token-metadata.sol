@@ -33,7 +33,25 @@ contract NFTokenMetadata is
    */
   constructor()
   {
-    supportedInterfaces[0x5b5e139f] = true; // ERC721Metadata
+  }
+
+  /**
+   * @dev Function to check which interfaces are supported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    virtual
+    pure
+    returns (bool)
+  {
+    return _interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x5b5e139f;
   }
 
   /**

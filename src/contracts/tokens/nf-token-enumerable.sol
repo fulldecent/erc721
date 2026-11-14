@@ -39,11 +39,22 @@ contract NFTokenEnumerable is
   mapping(uint256 => uint256) internal idToOwnerIndex;
 
   /**
-   * @dev Contract constructor.
+   * @dev Function to check which interfaces are supported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
    */
-  constructor()
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    virtual
+    pure
+    returns (bool)
   {
-    supportedInterfaces[0x780e9d63] = true; // ERC721Enumerable
+    return _interfaceID == 0x01ffc9a7
+      || _interfaceID == 0x80ac58cd
+      || _interfaceID == 0x780e9d63;
   }
 
   /**
