@@ -1,5 +1,5 @@
 {
-  "name": "@nibbstack/erc721",
+  "name": "@fulldecent/erc721",
   "version": "2.6.1",
   "description": "Reference implementation of the ERC-721 non-fungible token standard.",
   "type": "module",
@@ -7,6 +7,7 @@
     "test": "hardhat test mocha",
     "compile": "hardhat build",
     "coverage": "hardhat test mocha --coverage",
+    "prepack": "rm -rf build cache coverage abi && npm run compile",
     "solhint": "solhint src/**/*.sol",
     "lint:prettier": "prettier --check .",
     "lint:markdown": "markdownlint \"**/*.md\"",
@@ -15,6 +16,14 @@
     "format:markdown": "markdownlint --fix \"**/*.md\""
   },
   "license": "MIT",
+  "files": [
+    "src",
+    "abi",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fulldecent/erc721.git"

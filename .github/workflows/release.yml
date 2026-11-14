@@ -1,0 +1,200 @@
+# Release
+#
+# Open or update the release pull request, run the lint and test workflows,
+# and publish @fulldecent/erc721 to npm.
+#
+# The last published package is @nibbstack/erc721 2.6.1. The manifest records
+# that version. bootstrap-sha is the commit of that published tree, so Release
+# Please only counts commits after it. The next version is the conventional
+# bump from 2.6.1. The node release type writes CHANGELOG.md.
+#
+# include-v-in-tag is false. Tags look like 2.7.0, not v2.7.0.
+# skip-github-release stops Release Please from creating the tag. The publish
+# job creates the tag with gh release create, after the tests pass, then
+# npm publish. Changelog generation is separate and stays on.
+#
+# This workflow runs only on main. Pushing another branch does not publish
+# and does not update main.
+#
+# One-time setup
+#   1. Settings > General > Releases > Enable release immutability.
+#   2. Settings > Actions > General > Workflow permissions: Read and write.
+#   3. On that page, allow GitHub Actions to create and approve pull requests.
+#   4. Add an Actions secret named NPM_TOKEN that can publish @fulldecent/erc721.
+
+name: Release
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to publish, for example 2.7.0. Leave empty to open or update the release pull request only.
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  propose:
+    name: Open or update the release pull request
+    if: github.event_name == 'push' || inputs.tag == ''
+    runs-on: ubuntu-latest
+    outputs:
+      pr: ${{ steps.merged.outputs.pr }}
+      tag_name: ${{ steps.merged.outputs.tag_name }}
+    steps:
+      - name: Open the release pull request
+        uses: googleapis/release-please-action@v5
+        with:
+          skip-github-release: true
+
+      - name: Find a merged release pull request
+        id: merged
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          found=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls" --jq '
+            .[] | select(.merged_at != null and any(.labels[]; .name == "autorelease: pending"))
+            | "\(.number) \(.title | capture("release (?<v>[0-9]+[.][0-9]+[.][0-9]+)").v)"' | head -n 1)
+          if [ -n "$found" ]; then
+            read -r pr tag <<< "$found"
+            echo "pr=$pr" >> "$GITHUB_OUTPUT"
+            echo "tag_name=$tag" >> "$GITHUB_OUTPUT"
+          fi
+
+  lint:
+    name: Lint
+    needs: propose
+    if: |
+      always() &&
+      (needs.propose.result == 'success' || needs.propose.result == 'skipped') &&
+      (needs.propose.outputs.tag_name != '' ||
+       (github.event_name == 'workflow_dispatch' && inputs.tag != ''))
+    permissions:
+      contents: read
+    uses: ./.github/workflows/lint.yml
+
+  build-test:
+    name: Build and test
+    needs: propose
+    if: |
+      always() &&
+      (needs.propose.result == 'success' || needs.propose.result == 'skipped') &&
+      (needs.propose.outputs.tag_name != '' ||
+       (github.event_name == 'workflow_dispatch' && inputs.tag != ''))
+    permissions:
+      contents: read
+    uses: ./.github/workflows/node.js.yml
+
+  publish:
+    name: Publish release
+    needs: [propose, lint, build-test]
+    if: |
+      always() &&
+      needs.lint.result == 'success' &&
+      needs.build-test.result == 'success' &&
+      (needs.propose.outputs.tag_name != '' ||
+       (github.event_name == 'workflow_dispatch' && inputs.tag != ''))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+      attestations: write
+    steps:
+      - name: Check out this commit
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: npm ci
+
+      - name: Pack
+        run: |
+          mkdir -p dist
+          npm pack --pack-destination dist
+
+      - name: Resolve the tag
+        id: tag
+        env:
+          TAG: ${{ inputs.tag || needs.propose.outputs.tag_name }}
+        run: |
+          case "$TAG" in
+            [0-9]*.[0-9]*.[0-9]*) ;;
+            *) echo "tag must look like 2.7.0" >&2; exit 1 ;;
+          esac
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Attest the build
+        id: attest
+        uses: actions/attest@v4
+        with:
+          subject-path: dist/*
+
+      - name: Attest the version
+        id: version
+        uses: actions/attest@v4
+        with:
+          subject-path: dist/*
+          predicate-type: urn:version
+          predicate: ${{ format('{{"version":"{0}"}}', steps.tag.outputs.version) }}
+
+      - name: Write the sidecar
+        env:
+          BUILD_BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+          VERSION_BUNDLE: ${{ steps.version.outputs.bundle-path }}
+        run: |
+          jq -c . "$BUILD_BUNDLE" > dist/release.sigstore.jsonl
+          jq -c . "$VERSION_BUNDLE" >> dist/release.sigstore.jsonl
+
+      - name: Check the sidecar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for f in dist/*; do
+            [ "$f" = dist/release.sigstore.jsonl ] && continue
+            gh attestation verify "$f" -R "$GITHUB_REPOSITORY" --bundle dist/release.sigstore.jsonl
+            gh attestation verify "$f" -R "$GITHUB_REPOSITORY" --bundle dist/release.sigstore.jsonl \
+              --predicate-type urn:version
+          done
+
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          gh release create "$TAG" dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --generate-notes \
+            --latest
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          tarball=$(echo dist/*.tgz)
+          npm publish "$tarball" --access public --provenance
+
+      - name: Mark the release pull request tagged
+        if: needs.propose.outputs.pr != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ needs.propose.outputs.pr }}
+        run: |
+          gh api -X DELETE "repos/$GITHUB_REPOSITORY/issues/$PR/labels/autorelease:%20pending"
+          gh api "repos/$GITHUB_REPOSITORY/issues/$PR/labels" -f "labels[]=autorelease: tagged"

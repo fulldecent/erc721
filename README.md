@@ -1,8 +1,8 @@
 # ERC-721 Token — Reference Implementation
 
-[![Node.js CI](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml/badge.svg)](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml) [![NPM Version](https://img.shields.io/npm/v/@nibbstack/erc721)](https://www.npmjs.com/package/@nibbstack/erc721) [![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/fulldecent/erc721/blob/main/BUG_BOUNTY.md)
+[![Node.js CI](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml/badge.svg)](https://github.com/fulldecent/erc721/actions/workflows/node.js.yml) [![NPM Version](https://img.shields.io/npm/v/@fulldecent/erc721)](https://www.npmjs.com/package/@fulldecent/erc721) [![Bug Bounty](https://img.shields.io/badge/bounty-open-2930e8.svg)](https://github.com/fulldecent/erc721/blob/main/BUG_BOUNTY.md)
 
-**NOTICE: This repository has been transferred from 0xcert to Nibbstack and thus renamed from 0xcert/ethereum-erc721 to @nibbstack/erc721.**
+**NOTICE: This repository has been transferred from 0xcert to Nibbstack and thus renamed from 0xcert/ethereum-erc721 to @nibbstack/erc721. The package is now published as @fulldecent/erc721.**
 
 This is the complete reference implementation of the [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) non-fungible token standard for the Ethereum and Wanchain blockchains. It is also compatible with other EVM compatible chains like Binance Smart Chain (BSC), Avalanche (AVAX) etc. This is an open-source project, complete with [Hardhat](https://hardhat.org/) testing.
 
@@ -36,10 +36,10 @@ There are also test mocks in the [test mocks folder](src/tests/mocks). These are
 
 *This is the recommended installation method if you want to use this package in your JavaScript project.*
 
-This project is [released as an npm module](https://www.npmjs.com/package/@nibbstack/erc721). You must install it using the `npm` command:
+This project is [released as an npm module](https://www.npmjs.com/package/@fulldecent/erc721). You must install it using the `npm` command:
 
 ```sh
-npm install @nibbstack/erc721
+npm install @fulldecent/erc721
 ```
 
 ### Source
@@ -67,7 +67,7 @@ npm run test
 To interact with this package's contracts within JavaScript code, you simply need to require this package's `.json` files:
 
 ```js
-const contract = require("@nibbstack/erc721/abi/NFTokenEnumerable.json");
+const contract = require("@fulldecent/erc721/abi/NFTokenEnumerable.json");
 console.log(contract);
 ```
 

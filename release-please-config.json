@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "cec2beb0d52b3cc9ff5886e0afecd3a558308c84",
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "@fulldecent/erc721",
+      "changelog-path": "CHANGELOG.md",
+      "include-component-in-tag": false,
+      "include-v-in-tag": false,
+      "skip-github-release": true
+    }
+  }
+}
