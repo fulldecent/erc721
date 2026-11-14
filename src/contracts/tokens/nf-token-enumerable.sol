@@ -52,9 +52,9 @@ contract NFTokenEnumerable is
     pure
     returns (bool)
   {
-    return _interfaceID == 0x01ffc9a7
-      || _interfaceID == 0x80ac58cd
-      || _interfaceID == 0x780e9d63;
+    return _interfaceID == 0x01ffc9a7 // ERC165
+      || _interfaceID == 0x80ac58cd // ERC721
+      || _interfaceID == 0x780e9d63; // ERC721Enumerable
   }
 
   /**

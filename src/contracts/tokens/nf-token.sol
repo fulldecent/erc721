@@ -114,7 +114,8 @@ contract NFToken is
     pure
     returns (bool)
   {
-    return _interfaceID == 0x01ffc9a7 || _interfaceID == 0x80ac58cd;
+    return _interfaceID == 0x01ffc9a7 // ERC165
+      || _interfaceID == 0x80ac58cd; // ERC721
   }
 
   /**
