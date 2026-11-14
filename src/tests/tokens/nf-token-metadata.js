@@ -17,13 +17,13 @@ describe("nf-token-metadata", function () {
   });
 
   it("correctly checks all the supported interfaces", async function () {
-    expect(await nfToken.supportsInterface("0x01ffc9a7")).to.equal(true);
-    expect(await nfToken.supportsInterface("0x80ac58cd")).to.equal(true);
-    expect(await nfToken.supportsInterface("0x5b5e139f")).to.equal(true);
-    expect(await nfToken.supportsInterface("0x780e9d63")).to.equal(false);
-    expect(await nfToken.supportsInterface("0x00000000")).to.equal(false);
-    expect(await nfToken.supportsInterface("0x12345678")).to.equal(false);
-    expect(await nfToken.supportsInterface("0xdeadbeef")).to.equal(false);
+    expect(await nfToken.supportsInterface("0x01ffc9a7")).to.equal(true); // ERC165
+    expect(await nfToken.supportsInterface("0x80ac58cd")).to.equal(true); // ERC721
+    expect(await nfToken.supportsInterface("0x5b5e139f")).to.equal(true); // ERC721Metadata
+    expect(await nfToken.supportsInterface("0x780e9d63")).to.equal(false); // ERC721Enumerable
+    expect(await nfToken.supportsInterface("0x00000000")).to.equal(false); // the zero id
+    expect(await nfToken.supportsInterface("0x12345678")).to.equal(false); // not an interface id
+    expect(await nfToken.supportsInterface("0xdeadbeef")).to.equal(false); // not an interface id
   });
 
   it("returns the correct contract name", async function () {
