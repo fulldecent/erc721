@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.7.1](https://github.com/fulldecent/erc721/compare/2.7.0...2.7.1) (2026-11-15)
+
+
+### Bug Fixes
+
+* capitalization correction ([af7b5b5](https://github.com/fulldecent/erc721/commit/af7b5b5303389e8a8b88a673b78512f24cda4b02))
+* consistent word choice and typesetting ([d1cb12e](https://github.com/fulldecent/erc721/commit/d1cb12e4dbe1ec9730f14ec4d5a19ee48e0e5e51))
+* contract capitalization correction ([98c2a12](https://github.com/fulldecent/erc721/commit/98c2a12a46214cb0b4878abaccc3edd14a98f2d5))
+* contract spelling correction ([0737e0e](https://github.com/fulldecent/erc721/commit/0737e0e54faaf0a992b824b6b65128a3873d9483))
+* correct spelling and capitalization ([983242f](https://github.com/fulldecent/erc721/commit/983242fd35cfa9fd32a9b94962f63820c1698d1b))
+* document correct magic return value ([f3dac1f](https://github.com/fulldecent/erc721/commit/f3dac1f5d761c1cb3c343c3cee9e807a51d8f5d4))
+* document correct magic return value, fixes [#299](https://github.com/fulldecent/erc721/issues/299) ([8a2492c](https://github.com/fulldecent/erc721/commit/8a2492c27f02622097988b6c3a059c6591598521))
+* pick English flavor ([72d7e0c](https://github.com/fulldecent/erc721/commit/72d7e0c0c2001cd614c360952d9550ecd037a960))
+* spelling correction ([2363732](https://github.com/fulldecent/erc721/commit/2363732d1b96cd36f67c1cfd8a3690c1b34b7e7b))
+
 ## [2.7.0](https://github.com/fulldecent/erc721/compare/2.6.1...2.7.0) (2026-11-14)
 
 
