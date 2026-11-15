@@ -1,6 +1,6 @@
 {
   "name": "@fulldecent/erc721",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "Reference implementation of the ERC-721 non-fungible token standard.",
   "type": "module",
   "scripts": {
