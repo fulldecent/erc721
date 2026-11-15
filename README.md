@@ -23,7 +23,7 @@ Other files in the [tokens](src/contracts/tokens) and [utils](src/contracts/util
 
 Mock contracts showing basic contract usage are available in the [mocks](src/contracts/mocks) folder.
 
-There are also test mocks in the [test mocks folder](src/tests/mocks). These are specifically made to test different edge cases and behaviours and should NOT be used as a reference for implementation.
+There are also test mocks in the [test mocks folder](src/tests/mocks). These are specifically made to test different edge cases and behaviors and should NOT be used as a reference for implementation.
 
 ## Requirements
 
