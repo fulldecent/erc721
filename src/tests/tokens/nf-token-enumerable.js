@@ -27,7 +27,7 @@ describe("nf-token-enumerable", function () {
     expect(await nfToken.supportsInterface("0xdeadbeef")).to.equal(false); // not an interface id
   });
 
-  it("correctly mints a NFT", async function () {
+  it("correctly mints an NFT", async function () {
     expect(await nfToken.connect(owner).mint(bob.address, id1)).to.emit(
       nfToken,
       "Transfer",

@@ -16,7 +16,7 @@ The full style guide is the [0xcert Solidity style guide](https://github.com/0xc
 
 ## Release process
 
-The release manager is responsible to follow the process for each release of this project.
+The release manager is responsible for following the process for each release of this project.
 
 Summarize the changes and create a release using [GitHub releases](https://github.com/fulldecent/erc721/releases). Note that only major releases are required to be fully documented.
 

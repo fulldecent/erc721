@@ -7,7 +7,7 @@
 This is the complete reference implementation of the [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) non-fungible token standard for the Ethereum and Wanchain blockchains. It is also compatible with other EVM compatible chains like Binance Smart Chain (BSC), Avalanche (AVAX) etc. This is an open-source project, complete with [Hardhat](https://hardhat.org/) testing.
 
 The purpose of this implementation is to provide a good starting point for anyone who wants to use and develop non-fungible tokens on the Ethereum and Wanchain blockchains. Instead of re-implementing the ERC-721 yourself you can use this code which has gone through multiple audits and we hope it will be extensively used by the community in the future.
-Note that this implementation is more restrictive then the ERC-721 standard since it does not support `payable` function calls out of the box. You are however free to add this yourself.
+Note that this implementation is more restrictive than the ERC-721 standard since it does not support `payable` function calls out of the box. You are however free to add this yourself.
 
 If you are looking for a more feature-rich and advanced ERC-721 implementation, then check out the [0xcert Framework](https://github.com/0xcert/framework).
 

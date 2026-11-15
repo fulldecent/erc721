@@ -34,7 +34,7 @@ describe("nf-token-metadata", function () {
     expect(await nfToken.symbol()).to.equal("F");
   });
 
-  it("correctly mints a NFT", async function () {
+  it("correctly mints an NFT", async function () {
     expect(await nfToken.connect(owner).mint(bob.address, id1, uri1)).to.emit(
       nfToken,
       "Transfer",
@@ -47,7 +47,7 @@ describe("nf-token-metadata", function () {
     await expect(nfToken.tokenURI(id1)).to.be.revertedWith("003002");
   });
 
-  it("correctly burns a NFT", async function () {
+  it("correctly burns an NFT", async function () {
     await nfToken.connect(owner).mint(bob.address, id1, uri1);
     expect(await nfToken.connect(owner).burn(id1)).to.emit(nfToken, "Transfer");
     expect(await nfToken.balanceOf(bob.address)).to.equal(0);
