@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/fulldecent/erc721/compare/2.7.1...2.8.0) (2026-11-15)
+
+
+### Features
+
+* golfing for array size ([8550c4d](https://github.com/fulldecent/erc721/commit/8550c4d94b689bcd839c1d8835c44041e4f50df7))
+
 ## [2.7.1](https://github.com/fulldecent/erc721/compare/2.7.0...2.7.1) (2026-11-15)
 
 
