@@ -15,6 +15,7 @@ Thank you to all researchers, these are the accepted findings from this bounty p
 | #242       | Low severity | @sam-at-luther |
 | #299       | Notable      | @awley-del     |
 | #301       | Notable      | @awley-del     |
+| #306       | Low severity | @Toshit99      |
 
 ## Sponsors
 
@@ -32,6 +33,7 @@ We appreciate all suggestions for this contract, for operations, and for ERC-721
 * Only the latest released version of this project is **in scope**.
 * Social engineering, XKCD#538 attacks, bringing down Mainnet/Infura are **out of scope**.
 * Using a version of Solidity older than the latest version ([they don't support it](https://github.com/argotorg/solidity/security#supported-versions)) or other dependencies whose vendors no longer support them is **out of scope**.
+* An optimization is **out of scope** when, in normal circumstances, it does not reduce the overall cumulative gas.
 
 ## Sensitivity
 
