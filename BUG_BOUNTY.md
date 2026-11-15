@@ -13,6 +13,7 @@ Thank you to all researchers, these are the accepted findings from this bounty p
 | Bug report | Severity     | Researcher     |
 | ---------- | ------------ | -------------- |
 | #242       | Low severity | @sam-at-luther |
+| #299       | Notable      | @awley-del     |
 
 ## Sponsors
 
