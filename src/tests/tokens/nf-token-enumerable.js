@@ -1,5 +1,13 @@
 import { expect } from "chai";
-import { network } from "hardhat";
+import { globalOptions, network } from "hardhat";
+
+function expectMintGas(gasUsed, limit) {
+  // Coverage instrumentation changes the measured gas.
+  if (globalOptions.coverage) {
+    return;
+  }
+  expect(gasUsed).to.be.at.most(limit);
+}
 
 describe("nf-token-enumerable", function () {
   let nfToken, owner, bob, jane, sara, ethers;
@@ -141,5 +149,127 @@ describe("nf-token-enumerable", function () {
 
     expect(await nfToken.ownerToIdsLen(sara.address)).to.equal(1);
     expect(await nfToken.ownerToIdbyIndex(sara.address, 0)).to.equal(id1);
+  });
+
+  it("mints token id 0 as the first token", async function () {
+    await nfToken.connect(owner).mint(bob.address, 0);
+
+    expect(await nfToken.ownerOf(0)).to.equal(bob.address);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(1);
+    expect(await nfToken.totalSupply()).to.equal(1);
+    expect(await nfToken.tokenByIndex(0)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(0);
+  });
+
+  it("enumerates token id 0 when it is not the first token", async function () {
+    await nfToken.connect(owner).mint(bob.address, id1);
+    await nfToken.connect(owner).mint(bob.address, 0);
+
+    expect(await nfToken.tokenByIndex(0)).to.equal(id1);
+    expect(await nfToken.tokenByIndex(1)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(id1);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(0);
+  });
+
+  it("remints token id 0 after the collection is burned", async function () {
+    await nfToken.connect(owner).mint(bob.address, id1);
+    await nfToken.connect(owner).mint(bob.address, 0);
+    await nfToken.connect(owner).mint(bob.address, id2);
+    await nfToken.connect(owner).burn(0);
+    await nfToken.connect(owner).burn(id1);
+    await nfToken.connect(owner).burn(id2);
+
+    expect(await nfToken.totalSupply()).to.equal(0);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(0);
+    await expect(nfToken.ownerOf(0)).to.be.revertedWith("003002");
+    await expect(nfToken.tokenByIndex(0)).to.be.revertedWith("005007");
+
+    await nfToken.connect(owner).mint(bob.address, 0);
+    expect(await nfToken.ownerOf(0)).to.equal(bob.address);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(1);
+    expect(await nfToken.totalSupply()).to.equal(1);
+    expect(await nfToken.tokenByIndex(0)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(0);
+
+    await nfToken.connect(bob).transferFrom(bob.address, sara.address, 0);
+    expect(await nfToken.ownerOf(0)).to.equal(sara.address);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(0);
+    expect(await nfToken.balanceOf(sara.address)).to.equal(1);
+    expect(await nfToken.tokenByIndex(0)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(sara.address, 0)).to.equal(0);
+    await expect(
+      nfToken.tokenOfOwnerByIndex(bob.address, 0),
+    ).to.be.revertedWith("005007");
+  });
+
+  it("remints token id 0 beside a token that is still in the collection", async function () {
+    await nfToken.connect(owner).mint(bob.address, 0);
+    await nfToken.connect(owner).mint(bob.address, id1);
+    await nfToken.connect(owner).burn(0);
+    await nfToken.connect(owner).mint(bob.address, 0);
+
+    expect(await nfToken.tokenByIndex(0)).to.equal(id1);
+    expect(await nfToken.tokenByIndex(1)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(id1);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(0);
+
+    await nfToken.connect(owner).burn(0);
+    expect(await nfToken.totalSupply()).to.equal(1);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(1);
+    expect(await nfToken.ownerOf(id1)).to.equal(bob.address);
+    expect(await nfToken.tokenByIndex(0)).to.equal(id1);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(id1);
+    await expect(nfToken.ownerOf(0)).to.be.revertedWith("003002");
+  });
+
+  it("remints token id 0 for an owner who already holds a token", async function () {
+    await nfToken.connect(owner).mint(bob.address, id1);
+    await nfToken.connect(owner).mint(bob.address, 0);
+    await nfToken.connect(owner).mint(bob.address, id2);
+    await nfToken.connect(owner).burn(0);
+    await nfToken.connect(owner).mint(bob.address, 0);
+
+    expect(await nfToken.tokenByIndex(0)).to.equal(id1);
+    expect(await nfToken.tokenByIndex(1)).to.equal(id2);
+    expect(await nfToken.tokenByIndex(2)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(id1);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(id2);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 2)).to.equal(0);
+
+    await nfToken.connect(bob).transferFrom(bob.address, sara.address, 0);
+    expect(await nfToken.ownerOf(0)).to.equal(sara.address);
+    expect(await nfToken.balanceOf(bob.address)).to.equal(2);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(id1);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(id2);
+    expect(await nfToken.tokenOfOwnerByIndex(sara.address, 0)).to.equal(0);
+    await expect(
+      nfToken.tokenOfOwnerByIndex(bob.address, 2),
+    ).to.be.revertedWith("005007");
+  });
+
+  it("mints token id 0 in at most 103500 gas", async function () {
+    // @nibbstack/erc721 2.6.1 used 103634 gas on this test runner.
+    const receipt = await (
+      await nfToken.connect(owner).mint(bob.address, 0)
+    ).wait();
+
+    expectMintGas(receipt.gasUsed, 103500n);
+    expect(await nfToken.tokenByIndex(0)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 0)).to.equal(0);
+  });
+
+  it("remints token id 0 beside an existing token in at most 91800 gas", async function () {
+    // @nibbstack/erc721 2.6.1 used 92134 gas on this test runner.
+    await nfToken.connect(owner).mint(bob.address, id1);
+    await nfToken.connect(owner).mint(bob.address, 0);
+    await nfToken.connect(owner).mint(bob.address, id2);
+    await nfToken.connect(owner).burn(0);
+    const receipt = await (
+      await nfToken.connect(owner).mint(bob.address, 0)
+    ).wait();
+
+    expectMintGas(receipt.gasUsed, 91800n);
+    expect(await nfToken.tokenByIndex(2)).to.equal(0);
+    expect(await nfToken.tokenOfOwnerByIndex(bob.address, 2)).to.equal(0);
   });
 });
