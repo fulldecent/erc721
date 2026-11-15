@@ -120,4 +120,4 @@ Rules for bounty sponsor:
 
 ## Thank you
 
-Thank you for your interest in the ERC-721 Token Reference Implementation, for reading to the end of this file and for reading our code. Even if you don't find any problems, We'd love to [hear your thoughts](https://x.com/intent/tweet?text=%40fulldecent%20).
+Thank you for your interest in the ERC-721 Token Reference Implementation, for reading to the end of this file and for reading our code. Even if you don't find any problems, we'd love to [hear your thoughts](https://x.com/intent/tweet?text=%40fulldecent%20).
