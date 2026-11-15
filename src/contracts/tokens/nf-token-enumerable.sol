@@ -123,8 +123,9 @@ contract NFTokenEnumerable is
     virtual
   {
     super._mint(_to, _tokenId);
+    uint256 tokenIndex = tokens.length;
     tokens.push(_tokenId);
-    idToIndex[_tokenId] = tokens.length - 1;
+    idToIndex[_tokenId] = tokenIndex;
   }
 
   /**
@@ -202,9 +203,8 @@ contract NFTokenEnumerable is
   {
     require(idToOwner[_tokenId] == address(0), NFT_ALREADY_EXISTS);
     idToOwner[_tokenId] = _to;
-
+    idToOwnerIndex[_tokenId] = ownerToIds[_to].length;
     ownerToIds[_to].push(_tokenId);
-    idToOwnerIndex[_tokenId] = ownerToIds[_to].length - 1;
   }
 
   /**
