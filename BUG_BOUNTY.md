@@ -14,6 +14,7 @@ Thank you to all researchers, these are the accepted findings from this bounty p
 | ---------- | ------------ | -------------- |
 | #242       | Low severity | @sam-at-luther |
 | #299       | Notable      | @awley-del     |
+| #301       | Notable      | @awley-del     |
 
 ## Sponsors
 
