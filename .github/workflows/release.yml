@@ -184,8 +184,6 @@ jobs:
             --latest
 
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           tarball=$(echo dist/*.tgz)
           npm publish "$tarball" --access public --provenance
