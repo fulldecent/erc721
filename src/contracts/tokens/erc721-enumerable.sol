@@ -21,7 +21,7 @@ interface ERC721Enumerable
   /**
    * @dev Returns the token identifier for the `_index`th NFT. Sort order is not specified.
    * @param _index A counter less than `totalSupply()`.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenByIndex(
     uint256 _index
@@ -36,7 +36,7 @@ interface ERC721Enumerable
    * representing invalid NFTs.
    * @param _owner An address where we are interested in NFTs owned by them.
    * @param _index A counter less than `balanceOf(_owner)`.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenOfOwnerByIndex(
     address _owner,

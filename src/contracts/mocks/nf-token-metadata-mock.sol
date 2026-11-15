@@ -45,7 +45,7 @@ contract NFTokenMetadataMock is
   }
 
   /**
-   * @dev Removes a NFT from owner.
+   * @dev Removes an NFT from owner.
    * @param _tokenId Which NFT we want to remove.
    */
   function burn(

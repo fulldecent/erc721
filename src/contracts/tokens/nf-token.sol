@@ -89,7 +89,7 @@ contract NFToken is
   }
 
   /**
-   * @dev Guarantees that _tokenId is a valid Token.
+   * @dev Guarantees that _tokenId is a valid token.
    * @param _tokenId ID of the NFT to validate.
    */
   modifier validNFToken(
@@ -102,7 +102,7 @@ contract NFToken is
 
   /**
    * @dev Function to check which interfaces are supported by this contract.
-   * @param _interfaceID Id of the interface.
+   * @param _interfaceID ID of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
   function supportsInterface(
@@ -219,7 +219,7 @@ contract NFToken is
    * @dev Enables or disables approval for a third party ("operator") to manage all of
    * `msg.sender`'s assets. It also emits the ApprovalForAll event.
    * @param _operator Address to add to the set of authorized operators.
-   * @param _approved True if the operators is approved, false to revoke approval.
+   * @param _approved True if the operator is approved, false to revoke approval.
    */
   function setApprovalForAll(
     address _operator,
@@ -305,7 +305,7 @@ contract NFToken is
   }
 
   /**
-   * @notice Does NO checks.
+   * @notice Does no checks.
    * @dev Actually performs the transfer.
    * @param _to Address of a new owner.
    * @param _tokenId The NFT that is being transferred.
@@ -354,7 +354,7 @@ contract NFToken is
    * function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
    * NFT.
-   * @dev Burns a NFT.
+   * @dev Burns an NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
   function _burn(
@@ -372,7 +372,7 @@ contract NFToken is
 
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
-   * @dev Removes a NFT from owner.
+   * @dev Removes an NFT from owner.
    * @param _from Address from which we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */

@@ -25,7 +25,7 @@ describe("nf-token", function () {
     expect(await nfToken.supportsInterface("0xdeadbeef")).to.equal(false); // not an interface id
   });
 
-  it("correctly mints a NFT", async function () {
+  it("correctly mints an NFT", async function () {
     expect(await nfToken.connect(owner).mint(bob.address, 1)).to.emit(
       nfToken,
       "Transfer",
@@ -57,12 +57,12 @@ describe("nf-token", function () {
     ).to.be.revertedWith("003001");
   });
 
-  it("finds the correct owner of NFToken id", async function () {
+  it("finds the correct owner of NFT ID", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     expect(await nfToken.ownerOf(id1)).to.equal(bob.address);
   });
 
-  it("throws when trying to find owner od non-existing NFT id", async function () {
+  it("throws when trying to find owner of nonexistent NFT ID", async function () {
     await expect(nfToken.ownerOf(id1)).to.be.revertedWith("003002");
   });
 
@@ -82,7 +82,7 @@ describe("nf-token", function () {
     expect(await nfToken.getApproved(id1)).to.equal(zeroAddress);
   });
 
-  it("throws when trying to get approval of non-existing NFT id", async function () {
+  it("throws when trying to get approval of nonexistent NFT ID", async function () {
     await expect(nfToken.getApproved(id1)).to.be.revertedWith("003002");
   });
 
@@ -166,7 +166,7 @@ describe("nf-token", function () {
     ).to.be.revertedWith("003004");
   });
 
-  it("correctly safe transfers NFT from owner", async function () {
+  it("correctly safely transfers NFT from owner", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     expect(
       await nfToken
@@ -182,7 +182,7 @@ describe("nf-token", function () {
     expect(await nfToken.ownerOf(id1)).to.equal(sara.address);
   });
 
-  it("throws when trying to safe transfers NFT from owner to a smart contract", async function () {
+  it("throws when trying to safely transfer NFT from owner to a smart contract", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await expect(
       nfToken
@@ -195,7 +195,7 @@ describe("nf-token", function () {
     ).to.revert(ethers);
   });
 
-  it("correctly safe transfers NFT from owner to smart contract that can receive NFTs", async function () {
+  it("correctly safely transfers NFT from owner to smart contract that can receive NFTs", async function () {
     const tokenReceiverContract = await ethers.getContractFactory(
       "NFTokenReceiverTestMock",
     );
@@ -219,7 +219,7 @@ describe("nf-token", function () {
     );
   });
 
-  it("correctly safe transfers NFT from owner to smart contract that can receive NFTs with data", async function () {
+  it("correctly safely transfers NFT from owner to smart contract that can receive NFTs with data", async function () {
     const tokenReceiverContract = await ethers.getContractFactory(
       "NFTokenReceiverTestMock",
     );
@@ -246,14 +246,14 @@ describe("nf-token", function () {
     );
   });
 
-  it("correctly burns a NFT", async function () {
+  it("correctly burns an NFT", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     expect(await nfToken.connect(owner).burn(id1)).to.emit(nfToken, "Transfer");
     expect(await nfToken.balanceOf(bob.address)).to.equal(0);
     await expect(nfToken.ownerOf(id1)).to.be.revertedWith("003002");
   });
 
-  it("throws when trying to burn non existent NFT", async function () {
+  it("throws when trying to burn non-existent NFT", async function () {
     await expect(nfToken.connect(owner).burn(id1)).to.be.revertedWith("003002");
   });
 

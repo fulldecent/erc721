@@ -40,7 +40,7 @@ contract NFTokenEnumerable is
 
   /**
    * @dev Function to check which interfaces are supported by this contract.
-   * @param _interfaceID Id of the interface.
+   * @param _interfaceID ID of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
   function supportsInterface(
@@ -73,7 +73,7 @@ contract NFTokenEnumerable is
   /**
    * @dev Returns NFT ID by its index.
    * @param _index A counter less than `totalSupply()`.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenByIndex(
     uint256 _index
@@ -88,10 +88,10 @@ contract NFTokenEnumerable is
   }
 
   /**
-   * @dev returns the n-th NFT ID from a list of owner's tokens.
+   * @dev Returns the n-th NFT ID from a list of owner's tokens.
    * @param _owner Token owner's address.
    * @param _index Index number representing n-th token in owner's list of tokens.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenOfOwnerByIndex(
     address _owner,
@@ -132,7 +132,7 @@ contract NFTokenEnumerable is
    * burn function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
    * NFT.
-   * @dev Burns a NFT.
+   * @dev Burns an NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
   function _burn(
@@ -158,8 +158,8 @@ contract NFTokenEnumerable is
 
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
-   * @dev Removes a NFT from an address.
-   * @param _from Address from wich we want to remove the NFT.
+   * @dev Removes an NFT from an address.
+   * @param _from Address from which we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */
   function _removeNFToken(
@@ -189,7 +189,7 @@ contract NFTokenEnumerable is
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
    * @dev Assigns a new NFT to an address.
-   * @param _to Address to wich we want to add the NFT.
+   * @param _to Address to which we want to add the NFT.
    * @param _tokenId Which NFT we want to add.
    */
   function _addNFToken(
@@ -209,7 +209,7 @@ contract NFTokenEnumerable is
 
   /**
    * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
-   * extension to remove double storage(gas optimization) of owner NFT count.
+   * extension to remove double storage (gas optimization) of owner NFT count.
    * @param _owner Address for whom to query the count.
    * @return Number of _owner NFTs.
    */

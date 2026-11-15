@@ -84,7 +84,7 @@ interface ERC721
    * they may be permanently lost.
    * @dev Throws unless `msg.sender` is the current owner, an authorized operator, or the approved
    * address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is the zero
-   * address. Throws if `_tokenId` is not a valid NFT.  This function can be changed to payable.
+   * address. Throws if `_tokenId` is not a valid NFT. This function can be changed to payable.
    * @param _from The current owner of the NFT.
    * @param _to The new owner.
    * @param _tokenId The NFT to transfer.
@@ -114,7 +114,7 @@ interface ERC721
    * @dev Enables or disables approval for a third party ("operator") to manage all of
    * `msg.sender`'s assets. It also emits the ApprovalForAll event.
    * @param _operator Address to add to the set of authorized operators.
-   * @param _approved True if the operators is approved, false to revoke approval.
+   * @param _approved True if the operator is approved, false to revoke approval.
    */
   function setApprovalForAll(
     address _operator,

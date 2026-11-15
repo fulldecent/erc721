@@ -14,7 +14,7 @@
 * update contact info ([b4f66d6](https://github.com/fulldecent/erc721/commit/b4f66d68b95c2f8cf97552e1f7330b25a5067c7c))
 
 
-### Bug Fixes
+### Bug fixes
 
 * disallow unsupported Solidity versions ([94319f6](https://github.com/fulldecent/erc721/commit/94319f6bc7201983f2d1255af229bba3e61a319c))
 * remove impossible bounty condition ([b02184a](https://github.com/fulldecent/erc721/commit/b02184aab9190a15666af62270b99e706d91fd10))
