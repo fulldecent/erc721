@@ -45,7 +45,7 @@ describe("nf-token-enumerable", function () {
     expect(await nfToken.tokenByIndex(2)).to.equal(id3);
   });
 
-  it("throws when trying to get token by non-existing index", async function () {
+  it("throws when trying to get token by nonexistent index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await expect(nfToken.tokenByIndex(1)).to.be.revertedWith("005007");
   });
@@ -57,7 +57,7 @@ describe("nf-token-enumerable", function () {
     expect(await nfToken.tokenOfOwnerByIndex(bob.address, 1)).to.equal(id2);
   });
 
-  it("throws when trying to get token of owner by non-existing index", async function () {
+  it("throws when trying to get token of owner by nonexistent index", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     await expect(
       nfToken.tokenOfOwnerByIndex(bob.address, 1),

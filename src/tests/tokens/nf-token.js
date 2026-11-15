@@ -57,12 +57,12 @@ describe("nf-token", function () {
     ).to.be.revertedWith("003001");
   });
 
-  it("finds the correct owner of NFToken id", async function () {
+  it("finds the correct owner of NFT ID", async function () {
     await nfToken.connect(owner).mint(bob.address, id1);
     expect(await nfToken.ownerOf(id1)).to.equal(bob.address);
   });
 
-  it("throws when trying to find owner of non-existing NFT id", async function () {
+  it("throws when trying to find owner of nonexistent NFT ID", async function () {
     await expect(nfToken.ownerOf(id1)).to.be.revertedWith("003002");
   });
 
@@ -82,7 +82,7 @@ describe("nf-token", function () {
     expect(await nfToken.getApproved(id1)).to.equal(zeroAddress);
   });
 
-  it("throws when trying to get approval of non-existing NFT id", async function () {
+  it("throws when trying to get approval of nonexistent NFT ID", async function () {
     await expect(nfToken.getApproved(id1)).to.be.revertedWith("003002");
   });
 

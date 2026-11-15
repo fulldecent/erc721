@@ -154,7 +154,7 @@ contract NFTokenMetadataEnumerableMock is
 
    /**
    * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
-   * extension to remove double storage(gas optimization) of owner NFT count.
+   * extension to remove double storage (gas optimization) of owner NFT count.
    * @param _owner Address for whom to query the count.
    * @return Number of _owner NFTs.
    */

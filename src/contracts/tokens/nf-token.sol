@@ -305,7 +305,7 @@ contract NFToken is
   }
 
   /**
-   * @notice Does NO checks.
+   * @notice Does no checks.
    * @dev Actually performs the transfer.
    * @param _to Address of a new owner.
    * @param _tokenId The NFT that is being transferred.

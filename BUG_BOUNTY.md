@@ -1,4 +1,4 @@
-# ERC-721 Token Reference Implementation Bug Bounty
+# ERC-721 Token Reference Implementation bug bounty
 
 *Bug bounty process and how you can get rewarded for finding issues with the ERC-721 Token Reference Implementation.*
 
@@ -29,7 +29,7 @@ We appreciate all suggestions for this contract, for operations, and for ERC-721
 * Only the end-user contracts (`src/contracts/**/*.sol`) are **in scope**.
 * Only the latest released version of this project is **in scope**.
 * Social engineering, XKCD#538 attacks, bringing down Mainnet/Infura are **out of scope**.
-* Using a version of Solidity older than the latest version ([they don't support it](https://github.com/argotorg/solidity/security#supported-versions)) or other dependencies which their vendors no longer support is **out of scope**.
+* Using a version of Solidity older than the latest version ([they don't support it](https://github.com/argotorg/solidity/security#supported-versions)) or other dependencies whose vendors no longer support them is **out of scope**.
 
 ## Sensitivity
 
