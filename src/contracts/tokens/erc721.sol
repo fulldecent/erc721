@@ -47,7 +47,7 @@ interface ERC721
    * the zero address. Throws if `_tokenId` is not a valid NFT. When transfer is complete, this
    * function checks if `_to` is a smart contract (code size > 0). If so, it calls
    * `onERC721Received` on `_to` and throws if the return value is not
-   * `bytes4(keccak256("onERC721Received(address,uint256,bytes)"))`.
+   * `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`.
    * @dev Transfers the ownership of an NFT from one address to another address. This function can
    * be changed to payable.
    * @param _from The current owner of the NFT.
