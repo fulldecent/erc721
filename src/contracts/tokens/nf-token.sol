@@ -89,7 +89,7 @@ contract NFToken is
   }
 
   /**
-   * @dev Guarantees that _tokenId is a valid Token.
+   * @dev Guarantees that _tokenId is a valid token.
    * @param _tokenId ID of the NFT to validate.
    */
   modifier validNFToken(
@@ -102,7 +102,7 @@ contract NFToken is
 
   /**
    * @dev Function to check which interfaces are supported by this contract.
-   * @param _interfaceID Id of the interface.
+   * @param _interfaceID ID of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
   function supportsInterface(

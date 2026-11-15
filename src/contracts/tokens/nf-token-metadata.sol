@@ -23,7 +23,7 @@ contract NFTokenMetadata is
   string internal nftSymbol;
 
   /**
-   * @dev Mapping from NFT ID to metadata uri.
+   * @dev Mapping from NFT ID to metadata URI.
    */
   mapping (uint256 => string) internal idToUri;
 
@@ -37,7 +37,7 @@ contract NFTokenMetadata is
 
   /**
    * @dev Function to check which interfaces are supported by this contract.
-   * @param _interfaceID Id of the interface.
+   * @param _interfaceID ID of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
   function supportsInterface(
@@ -82,7 +82,7 @@ contract NFTokenMetadata is
 
   /**
    * @dev A distinct URI (RFC 3986) for a given NFT.
-   * @param _tokenId Id for which we want uri.
+   * @param _tokenId ID for which we want URI.
    * @return URI of _tokenId.
    */
   function tokenURI(
@@ -100,7 +100,7 @@ contract NFTokenMetadata is
   /**
    * @notice This is an internal function that can be overridden if you want to implement a different
    * way to generate token URI.
-   * @param _tokenId Id for which we want uri.
+   * @param _tokenId ID for which we want URI.
    * @return URI of _tokenId.
    */
   function _tokenURI(
@@ -139,7 +139,7 @@ contract NFTokenMetadata is
    * function. Its purpose is to show and properly initialize data structures when using this
    * implementation.
    * @dev Set a distinct URI (RFC 3986) for a given NFT ID.
-   * @param _tokenId Id for which we want URI.
+   * @param _tokenId ID for which we want URI.
    * @param _uri String representing RFC 3986 URI.
    */
   function _setTokenUri(

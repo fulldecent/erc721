@@ -40,7 +40,7 @@ contract NFTokenEnumerable is
 
   /**
    * @dev Function to check which interfaces are supported by this contract.
-   * @param _interfaceID Id of the interface.
+   * @param _interfaceID ID of the interface.
    * @return True if _interfaceID is supported, false otherwise.
    */
   function supportsInterface(
@@ -73,7 +73,7 @@ contract NFTokenEnumerable is
   /**
    * @dev Returns NFT ID by its index.
    * @param _index A counter less than `totalSupply()`.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenByIndex(
     uint256 _index
@@ -88,10 +88,10 @@ contract NFTokenEnumerable is
   }
 
   /**
-   * @dev returns the n-th NFT ID from a list of owner's tokens.
+   * @dev Returns the n-th NFT ID from a list of owner's tokens.
    * @param _owner Token owner's address.
    * @param _index Index number representing n-th token in owner's list of tokens.
-   * @return Token id.
+   * @return Token ID.
    */
   function tokenOfOwnerByIndex(
     address _owner,

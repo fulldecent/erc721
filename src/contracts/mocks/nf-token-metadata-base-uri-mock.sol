@@ -64,7 +64,7 @@ contract NFTokenMetadataBaseUriMock is
 
     /**
    * @dev A distinct URI (RFC 3986) for a given NFT.
-   * @param _tokenId Id for which we want uri.
+   * @param _tokenId ID for which we want URI.
    * @return URI of _tokenId.
    */
   function _tokenURI(
