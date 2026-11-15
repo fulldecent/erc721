@@ -20,7 +20,7 @@
 #   1. Settings > General > Releases > Enable release immutability.
 #   2. Settings > Actions > General > Workflow permissions: Read and write.
 #   3. On that page, allow GitHub Actions to create and approve pull requests.
-#   4. Add an Actions secret named NPM_TOKEN that can publish @fulldecent/erc721.
+#   4. npm trusted publishing for this workflow file is already configured.
 
 name: Release
 
@@ -176,16 +176,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.tag.outputs.tag }}
         run: |
-          gh release create "$TAG" dist/* \
-            --repo "$GITHUB_REPOSITORY" \
-            --target "$GITHUB_SHA" \
-            --title "$TAG" \
-            --generate-notes \
-            --latest
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "GitHub release $TAG already exists"
+          else
+            gh release create "$TAG" dist/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "$TAG" \
+              --generate-notes \
+              --latest
+          fi
 
       - name: Publish to npm
         run: |
-          tarball=$(echo dist/*.tgz)
+          tarball=$(echo ./dist/*.tgz)
+          test -f "$tarball"
           npm publish "$tarball" --access public --provenance
 
       - name: Mark the release pull request tagged
