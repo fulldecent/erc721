@@ -132,7 +132,7 @@ contract NFTokenEnumerable is
    * burn function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
    * NFT.
-   * @dev Burns a NFT.
+   * @dev Burns an NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
   function _burn(
@@ -158,8 +158,8 @@ contract NFTokenEnumerable is
 
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
-   * @dev Removes a NFT from an address.
-   * @param _from Address from wich we want to remove the NFT.
+   * @dev Removes an NFT from an address.
+   * @param _from Address from which we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */
   function _removeNFToken(
@@ -189,7 +189,7 @@ contract NFTokenEnumerable is
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
    * @dev Assigns a new NFT to an address.
-   * @param _to Address to wich we want to add the NFT.
+   * @param _to Address to which we want to add the NFT.
    * @param _tokenId Which NFT we want to add.
    */
   function _addNFToken(

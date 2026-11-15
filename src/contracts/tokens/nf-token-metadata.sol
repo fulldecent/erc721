@@ -98,7 +98,7 @@ contract NFTokenMetadata is
   }
 
   /**
-   * @notice This is an internal function that can be overriden if you want to implement a different
+   * @notice This is an internal function that can be overridden if you want to implement a different
    * way to generate token URI.
    * @param _tokenId Id for which we want uri.
    * @return URI of _tokenId.
@@ -119,7 +119,7 @@ contract NFTokenMetadata is
    * burn function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
    * NFT.
-   * @dev Burns a NFT.
+   * @dev Burns an NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
   function _burn(

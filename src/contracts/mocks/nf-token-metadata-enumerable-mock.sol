@@ -67,7 +67,7 @@ contract NFTokenMetadataEnumerableMock is
   }
 
   /**
-   * @dev Removes a NFT from owner.
+   * @dev Removes an NFT from owner.
    * @param _tokenId Which NFT we want to remove.
    */
   function burn(
@@ -99,7 +99,7 @@ contract NFTokenMetadataEnumerableMock is
   }
 
   /**
-   * @dev Burns a NFT.
+   * @dev Burns an NFT.
    * @notice This is an internal function which should be called from user-implemented external
    * burn function. Its purpose is to show and properly initialize data structures when using this
    * implementation. Also, note that this burn implementation allows the minter to re-mint a burned
@@ -122,8 +122,8 @@ contract NFTokenMetadataEnumerableMock is
 
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
-   * @dev Removes a NFT from an address.
-   * @param _from Address from wich we want to remove the NFT.
+   * @dev Removes an NFT from an address.
+   * @param _from Address from which we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */
   function _removeNFToken(
@@ -139,7 +139,7 @@ contract NFTokenMetadataEnumerableMock is
   /**
    * @notice Use and override this function with caution. Wrong usage can have serious consequences.
    * @dev Assigns a new NFT to an address.
-   * @param _to Address to wich we want to add the NFT.
+   * @param _to Address to which we want to add the NFT.
    * @param _tokenId Which NFT we want to add.
    */
   function _addNFToken(

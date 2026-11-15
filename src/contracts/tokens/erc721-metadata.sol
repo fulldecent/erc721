@@ -18,7 +18,7 @@ interface ERC721Metadata
     returns (string memory _name);
 
   /**
-   * @dev Returns a abbreviated name for a collection of NFTs in this contract.
+   * @dev Returns an abbreviated name for a collection of NFTs in this contract.
    * @return _symbol Representing symbol.
    */
   function symbol()
